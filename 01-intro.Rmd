@@ -76,7 +76,46 @@ However, we also want to ask about the probability of events such as 'all result
 
 Emphasize 'possible values' and \omega. i.e. the point is the experiment has not been performed. So we cannot know the value of \omega. Before the experiment all we can know are the all the possible values that might occur in the future. 
 
+## Filtration
+Imagine the roll of a dice. However, when the experiment is completed, information will only be revealed a step at a time. We're going to consider the possible questions that can be asked/answered over time.
+
+When step = 0, we can only ask 'was there an outcome?'. This is the coarsest level of information we can ascertain. The step allows the question 'Was the number even or odd' to be answered. The last step allows the question 'was the number 4 or not' to be answered. It can be seen that each question reveals a little more information than the previous step. How is this modeled using events?
+
+We use each set of outcomes to represent what could happen in the end, given what we know to date. Consider the following sets of subsets of $\Omega$:
+
+$$\{\{1,2,3,4,5,6\}, \emptyset\}$$
+$$\{\{1,3,5\}, \{2, 4, 6\}\}$$
+$$\{\{1\},\{2\},\{3\},\{4\},\{5\},\{6\}\} $$
+If I tell you which of the events in the last set occurred then you would have more granular information than if I told you which of the events in the second set occurred. Likewise, telling you which of the events in the second set occurred gives more granular information than being told which of the events in the first set occurred.
+
+Think of me revealing the following information in sequence: 
+
+* $\{1,2,3,4,5,6\}$ occurred (tells you a result has been discovered but not which one)
+* $\{2, 4, 6\}$ occurred (tells you the final result is an even number)
+* $\{4\}$ occurred (as much information as you could be given).
+
+Notice, there are many possible 'revelation paths', for example being told: $$\{1,2,3,4,5,6\} \rightarrow \{4,5,6\} \rightarrow \{5\}$$
+In this above case, each step answers the sequence of questions: 'was the dice rolled?', 'Was it 4 and above or not?', 'What number was it?'.
+
+But, importantly, since the experiment has ended and I am revealing the result a step at a time, then each step must contain the final result $\{4\}$ (or $\{5\}$ in second case). In fact, each revelation must contain the next revelation in some way. This means the following can never occur as a revelation path: $$\{1,2,3,4,5,6\} \rightarrow \{1,3,5\} \rightarrow \{6\}$$ In words, I can't reveal 'the final number is odd' and in the next step reveal it was $6$.
+
+How do we capture the 'contains' which is the key point? This requires a mathematical construct known as a $\sigma$-algebra. Simply put, if you have, say, two sets and list every union, intersection and complement possible, you end up with super-set called the $\sigma$-algebra generate by those sets. It is the relationship between $\sigma$-algebras that will be used to capture 'contains'. Let's form the required super-set at each stage of the revelation: 
+$$S_0 = \{\{1, 2, 3, 4, 5, 6\}, \emptyset\}$$
+That's all we can write for this first $\sigma$-algebra.
+$$S_1=\{\{1,3,5\}, \{2, 4, 6\}, \{1,2,3\}, \{4,5,6\},\dots, \{1,2,3,4,5,6\},\emptyset\}$$
+This models a set of any three final outcomes being revealed (e.g. odd/even, 4 and above, etc) at step 2. Notice, we've expanded possibilities beyond just 'even/odd' to 'any possible'.
+$$S_2=\{\{1\},\{2\},\{3\},\{4\},\{5\},\{6\}, \{1,2\}, \{2,3\},\dots,\{1,3,5\},\{2,4,6\},\dots,\{1, 2, 3, 4, 5, 6\}, \emptyset \}$$
+As 'atomic events' are contained within the original set, every possible other subset that can be generated using union, intersection and complement is also a member of this $\sigma$-algebra, that's the whole shebang. Now notice we can write 'contains' using the subset relation: $$S_0 \subseteq S_1 \subseteq S_2$$
+
+This is the way in which 'information revealing' is modeled using sets. As we arrange a sequence of $\sigma$-algebras using containment $S_0 \subseteq S_1 \subseteq S_2 \subseteq \dots \subseteq S_n$ each step allows us to model a narrowing down to the final result i.e. each step across time  models the arrival of information which leads to a reduction in uncertainty.
+
+Another way to look at this is 'after each step we know which of the previous possibilities will never occur'. Once we are told 'odd number occurred' then we know 'even number never happened and can forget about that possibility. This is perhaps more useful when thinking about infinite sequences as there's always (for all time and beyond) a huge arrange of future possibilities, yet definite knowledge that some previous possibilities can now never occur.
+
+[Another way to think about this is as the resolution of our measuring instrument. Perhaps even numbered dots are gold and odd number silver and at step 2, our measuring instrument can only resolve colour. What about measuring the colour of a star...resolution means being able to discriminate between individual outcomes vs groups of outcomes? Is 'resolution' a good physical metaphor for $\sigma$-algebra generated by $X$ is smallest $\sigma$-algebra...etc?]
+
 ## Probability
+[Note: Oksenda: probability measure $P()$ is defined on the underlying sample space. Every random variable induces a probability measure $\mu_X$ on the range $\textbf{R}^n$ of $X$ $$\mu_X(B)=P(X^{-1}(B))$$. $\mu_X$ is called the DISTRIBUTION of $X$]
+
 It is associated with events i.e. sets of sample points. Mathematically, probability is a weighting given to a the set containing a sample point that indicates the probability of it occurring in the upcoming experiment. 
 
 Later on the common notation $P(X=x_k)$ will confuse matters. In reality, the probability function is defined on the domain (sample space) of a random variable. But it is often used as though $P()$ is defined on the range of the random variable. This is usually fine but always keep in mind the probability is a function taking a set of sample points as input.
