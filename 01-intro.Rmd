@@ -1,0 +1,159 @@
+# Introduction {#intro}
+
+You can label chapter and section titles using `{#label}` after them, e.g., we can reference Chapter \@ref(intro). If you do not manually label them, there will be automatic labels anyway, e.g., Chapter \@ref(methods).
+
+Figures and tables with captions will be placed in `figure` and `table` environments, respectively.
+
+```{r nice-fig, fig.cap='Here is a nice figure!', out.width='80%', fig.asp=.75, fig.align='center'}
+par(mar = c(4, 4, .1, .1))
+plot(pressure, type = 'b', pch = 19)
+```
+
+Reference a figure by its code chunk label with the `fig:` prefix, e.g., see Figure \@ref(fig:nice-fig). Similarly, you can reference tables generated from `knitr::kable()`, e.g., see Table \@ref(tab:nice-tab).
+
+```{r nice-tab, tidy=FALSE}
+knitr::kable(
+  head(iris, 20), caption = 'Here is a nice table!',
+  booktabs = TRUE
+)
+```
+
+You can write citations, too. For example, we are using the **bookdown** package [@R-bookdown] in this sample book, which was built on top of R Markdown and **knitr** [@xie2015].
+
+## Random experiment
+This is a deep topic. We can't go into depth here. Human intuition fails. The formal theories [plural (see opening of this text)](https://www.google.co.uk/books/edition/Interpretations_of_Probability/j_2jlgdEIVQC?hl=en&gbpv=1&dq=probability+interpretation&printsec=frontcover) are well established but the interpretations are not. We approach it from a subjective perspective, whether the physical process is random or it just looks random because of your degree of ignorance will be treated the same. We acknowledge randomness exists in the physical world but assume many beginning readers will find it more natural to view it from a subjective perspective - i.e. as a measure of their ignorance.
+
+Examples: deterministic process that can produce a random sequence? It's the mathematical sequence that is random even though underlying physical process is not.
+
+Selecting a person at random and measuring their weight gives a random number. Yet the subject could be certain of their weight all along. It's the selection process that must introduce randomness in the eyes of the researcher. It is subjective - relative to an individuals role in the process as the actual weight is not uncertain.
+
+However, nuclear decay is inherently random as are many other processes in the Universe. This is not subjective.
+
+You can introduce uncertainty by not bothering to find out the exact answer. How many hairs on a cats tail? I wont count but will estimate based upon information, perhaps. Is this the same as randomness? It seems different yet I could define a range of outcomes and assign each a probability?
+
+Any situation where you could place a bet...'I bet there 100K hairs on a cats tail', 'I bet the coin will come  up tails', 'I bet the next car passing my window will be silver'.
+
+The point is, you cannot be certain before (physical limits or can't be bothered) but will be certain at the end.
+
+## Sample point
+Could be an interval (cats hairs betting ranges: 100K-110K, 120K-130K...), or an area (will score 1, 2,...50 on a dartboard), or simple labels (H/T, 1...6 dice).
+
+But we will rapidly lift away (abstract) from physical sample points. Sample points are not important in the abstract theory. They are only useful for explanation and during applications.
+
+## Sample Space
+Note: sample space is a set, sample points are atomic elements of the sample space, events are also sets.
+
+Any experiment whose outcome is unknown given everything we know at the moment is called a random experiment. But we can describe all *possible observations* that can be made once the experiment is over. We cannot predict the outcome of tossing a coin but we know all the possible outcomes. Describe outcomes as relative to the experimental point of view and question being asked - an experiment does not  have a unique set of outcomes but there are many. So you might ask for the symbol on the coin after a toss, or whether it was the same as the toss before, or stock price vs delta, or pass/fail vs exact measurement of something, or intervals $\Delta t_i$ during which a component might fail (each interval is a sample point).
+
+Also, randomness is relative to your state of knowledge - ask the next person you see their height and the answer is random from your perspective, even though that person was certain about their height before hand. However, the process by which the person was selected must be random (you cannot predict who will be chosen) otherwise there is no uncertainty.
+
+How does mathematics model the results of an experiment? There are three separate ideas to keep in mind. Firstly, when is the experiment or trial considered finished? This can be subtle. For example, tossing a coin an inifinite number of times! The next idea is what possible results will you  actually record. This is the raw underlying data that can result from the experiment. For example, one trial tosses a coin three times and I observe HTH. The final point is a function of the possible observed results. This is a way of grouping the raw data to indicate that any of those results is of interest. 
+
+Group all dice events that are even. Group all tosses with one, two, three heads. We consider the event to have occurred when one of those atomic outcomes occurs.
+
+The experimenter may only be interested in what the data implies. Maybe they only want to know if the dice was odd or even - nothing else is of interest. The raw data is only useful in so far as it indicates with of the two events of interest occurred.
+
+Another way to look at it is by how much information is revealed to the experimenter. Perhaps they can only distinguish from the particular experiment which group of numbers (even or odd) occurred at the end of the experiment. In this case, we can model the 'granularity' of the apparatus. Even though the possible results are known, perhaps only a certain amount of information was revealed by the apparatus.
+
+Say the even numbers are red dots and the odd numbers blue dots. Say the apparatus can only distinguish red or blue. It cannot report the actual number so the experimenter is testing at a coarser level.
+
+Explain difference between experiment where result is revealed at the end, and one where information is revealed as we go forward.
+
+Of course, the apparatus is also limited in a more fundamental way. It cannot see into the future therefore cannot report the next step let alone the final outcome. The grouping of final outcomes is 'dynamic' in the sense that as each step is taken through time, the final outcomes can be regrouped given what just happened. For example, at the start of a coin tossing run, the final sequence could start with T or H. Once the first toss is completed the reported result (obviously, this is not a final outcome) groups the final outcomes into those that cannot and those that possibly could happen.
+
+This is useful in modeling infinite events - those that reveal information over time. You never know the final outcome, only as much as the apparatus (in this case restricted by time) allows you to see. Think of a stock price. You can say something about what it wont do because those outcomes could not occur because they don't match the past information.
+
+## Events
+THIS IS CORRECT MOTIVATION
+Need to explain sample space and subsets (events).
+Let's say we run an experiment which involves tossing a coin three times. But before we begin, can you write out the set of all possible outcomes?
+$$\{HHH, HHT, HTH, HTT, TTT, TTH, THT, THH\}$$
+Now what is the outcome after the experiment? Of course you don't yet know because 'chance' stands between you and the final result. But let's wind forward in time where we will find the result has been the subset $\{HTT\}$. Is there any uncertainty about the outcome anymore? Of course not - this is the land of statistics! 
+
+Now, returning back to before the experiment has begun, we can assign a number to each possible outcome to indicate its probability of occurring. We can then write a set function $P(\{HHT\})=1/8$ to give an indication of how likely to be observed after our experiment is this possible result.
+
+However, we also want to ask about the probability of events such as 'all results starting with H' or 'all results ending with two T'. So our set function must handle subsets such as $\{HHH, HHT, HTH, HTT\}$. In fact, we shall call all valid sets 'events'. So pretty much all subsets of the set of all possible outcomes, are events that can be used as an input variable to $P()$.
+
+Emphasize 'possible values' and \omega. i.e. the point is the experiment has not been performed. So we cannot know the value of \omega. Before the experiment all we can know are the all the possible values that might occur in the future. 
+
+## Probability
+It is associated with events i.e. sets of sample points. Mathematically, probability is a weighting given to a the set containing a sample point that indicates the probability of it occurring in the upcoming experiment. 
+
+Later on the common notation $P(X=x_k)$ will confuse matters. In reality, the probability function is defined on the domain (sample space) of a random variable. But it is often used as though $P()$ is defined on the range of the random variable. This is usually fine but always keep in mind the probability is a function taking a set of sample points as input.
+
+
+
+## Random Variable
+### Abstraction
+We want to be able to make mathematical statements in our formal model and not talk about genders at birth, sides of a coin or something else. Mathematics allows us to abstract by using numbers to represents outcomes e.g. $Male=0, Female=1$ or $Heads=0, Tails=1$. In fact, by simply using $0,1$ to represent outcomes we no longer have to make statements within a subject domain. Instead of saying 'probability of a male' or 'probability of heads' we can say 'probability of getting 0'. Any experiment with a binary result can be modeled as a 0 or 1.
+
+In other cases we may wish to process the result of the experiment. Take the roll of a dice. We might ask 'probability of an even number'. There are three even numbers on the dice. We are not distinguishing between them but grouping them into one set. We are only interested in the two qualities of odd/even. So we can map each number to either 0 or 1. Notice, we have abstracted away each number and only focus upon a single property of each number.
+
+Another example comes from the tossing of three coins. Given an outcome, we might instead report the number of heads found in the result. This number ranges from 0 to 3. 
+
+In many cases, the observation is already a number, for example when counting the number of people queuing at a supermarket. In this case, the conversion may leave the number as-is.
+
+To map from H to 0 and T to 1 we use a mathematical function. So let us write $f(\omega)$ to represent this 'act of measurement'. The $\omega$ represents that which was observed (H or T) and $f(\omega)$ is the value of the measurement (0 or 1). Or the function might map $\{HHH\}$ to $3$ and $\{THH\}$ to $2$.
+
+There is nothing at all random about this function. If you break it apart and peer inside you'll see the exact same mechanics as any other function such as $x^2$ or $sin(x)$. Nothing, nada, say no to randomness.
+
+And yet a 'random variable' is defined as a function - so what gives?
+
+Let us consider the moment after an experiment is run. Then you can plug an exact value for $\omega$ and out pops the corresponding measurement. However, as probabilists, we want to make statements before the experiment is run. But, in that moment, $f(\omega)$ has no value because no outcome has been recorded and $\omega$ has unknown value. So we can't actually use the function the way we can $x^2$ or $sin(x)$.
+
+Instead, let's examine what we do know even before the experiment is run. As we have said, from the description of the function (H maps to 0 and T maps to 1) we know exactly how the function WILL behave when the experiment ends and an exact value for $\omega$ is observed. But at this point we are uncertain as to whether the input is going to be H or T. So both are *possible input values* to $f(\omega)$ but we are uncertain which one will materialize. So all we can say at the moment is that our simple function is pulsing with excitement waiting for any of the *possible input values*. And it is in this state of excitement and pulsation that a function levels-up and is renamed a random variable. In this state, we cannot say $\omega$ has value H or T. But we can say $\omega$ could take any of the *possible values* H or T. Bear this in mind as we will write $\omega = H$ to indicate we are considering the hypothetical future in which $\omega$ has possible value H instead of possible value T. When we use $\omega = H$ to indicate the experiment has ended and we observed the value H then we shall make it clear in the text.
+
+There is one remaining problem we have to tackle. When we say *possible values* for $\omega$ we need some way to acknowledge that some things are more possible than others, or equally likely. This assignment of possibilities will need to be numeric to keep mathematicians happy. Naturally we're talking about probability and 'assignment' should bring us back to the notion of a mathematical function. So we will need a function that assigns to an outcome a probability. But what is the domain of this probability assignment function? Is it the sample space H or T, or is it the measure space 0 or 1. Well mathematics doesn't want to talk about heads or tails or the colour of geese. You can now see the whole purpose of $f(\omega)$ was to abstract away from the real world. $\omega$ comes from some range of outcomes - don't really care what. The key point, mathematically, is whether it is a continuous or discrete range of values. Given this emphasis, it  means our probabilities should be assigned to the values in the range space of $f(\omega)$. Since $f(\omega)$ maps to a single value, this presents no real problems. It is a subtle point worth keeping in the back of your mind that we're always writing $P(f(\omega))$.
+
+
+Here's another example of converting things to numbers using functions. Here is our function, pulsing in excitement of its input value. Let's create another function $g(x)$ which maps a measurement such as 0 or 1 to a number less than one. In our case, we decide to assign $g(0)=1/2$ and $g(1) = 1/2$. Again, this function works on the measurements (0, 1), not the outcomes (H, T).
+
+It is the pair $f(\omega)$ and $P(x)$ that warrants leveling-up $f(\omega)$ to the new title 'Random Variable'.
+
+The point is that within the mathematics there is no randomness. There is no switch that says 'this function is deterministic but this one is random'. All functions are deterministic so all of 'normal mathematics' can be applied. It is only in the interpretation, the mental viewpoint -BEFORE- the experiment that the function is taken to model everything that could happen - but hasn't yet occurred. Here input values must be treated as possible input values and that randomness requires two function in a pair to model chance. Namely the random variable and the probability distribution of its range of values.
+
+## Two random variables
+A single experiment involves making two measurements, not just one. We will need two random variables to describe the output values, $X(\omega), Y(\omega)$. In this case, we could be making two measurements from a single outcome or two measurements from two separate outcomes (per experiment), it makes no difference. We have abstracted away from the actual outcome space to an abstract space to which we assign probabilities.
+We just need a way of describing the possible results using an outcome space. So picking one person at random could result in a weight and height number. Each can be described by a random variable. Or we could toss a coin and spin a dice. We just need to describe the outcome space as we are not concerned with dependence of independence at this stage. Just need to describe all possible measurements form each experiment.
+
+### Distribution
+Only by assigning probabilities can we describe relationships between the outcomes and capture whether they are dependent or independent events per experiment.
+
+The simplest case is the probability of getting one result and another $P(X=x, Y=y)$.
+
+The second case is the probability of getting one result, given we have information on the other RV $P(X=x | Y=y)$. This latter captures an update in our assesmennt of probability in light of new information.
+
+
+
+
+## Stochastic Process
+$X(t, \omega)$
+
+We're measuring a process - something that evolves over time. We could repeatedly measure the length of a table or count the number of keys on a keyboard and find it has the same value over time.
+We could count the number of people in a supermarket every 5 minutes or measure the temperature of the sun every second, the price of a stock every hour, the amount of solar radiation reflected by the earth's atmosphere every year. 
+I could record the result of flipping a coin, record the result of tossing a dice, measure my height, count the number of clouds in the sky...etc. Each is a measurement made at a different time - more of a survey of what's around me each moment than a process.
+
+It's easier to grasp the final outcome of a process. This is known as a path or trajectory so let's look at some examples, each experiment lasting 5 units of time (seconds, minutes, hours,...) and each measurement carried out after one unit of time:
+
+* Table length (week): 180cm, 180cm, 180cm, 180cm, 180cm
+* Keys on keyboard (month): 104, 104, 104, 104, 103
+* People in a shop (5 min): 35, 38, 33, 35, 32
+* Surface sun (year): 5778K, 5670K, 5780K, 5560K, 5500K
+* Coin flipping (flips): H, H, H, T, H
+* Dice tossing: 1, 3, 2, 5, 4
+
+Notice each path above measures something different. The range of possible values in each step is called the outcome space. For the first toss of a coin it might be H or T. But we will treat the state space as an entire path. So, [H, H, H, T, H] and [T, T, T, H, T] are two sample paths or outcomes of the process.
+
+Each step is modeled using a function $X_t(\omega)$ where $\omega$ is a possible path that could be observed at the end of the run. $X_t$ is the function that maps the final path to what occurred at prior time $t$.
+
+So where is the randomness? Let's start with a contrast and go to the comfortable scene at the end of the experiment when everything is known and randomness is no more. From the records you now see the entire path, so the input variable $\omega$ has attained a value and is now a constant - its value is written in the history books of this experiment forever. Let's pretend $\omega=(H,H,H,T,H)$. Using hindsight we can now write our function as $X(t, (H, H, H, T, H))$ showing the only input variable is now $t$ so at some past time, say $t=3$, $X(3, (H, H, H, T, H))=T$. The function maps from the known sequence $\omega$ to its value at time $t$.
+
+This should be comfortable territory for those how understand basic mathematical functions.
+
+Now let's work back one step in time. Let's pretend we don't know the final result but we do know at $t=3$ we've followed the path $(H, H, H, T, ?)$. The question mark shows our new prespective has introduced uncertainty but only about the last step. However, our definition of the master random variable requires a complete path as the last parameter $X(t, \omega)$. But we do not know the complete path as the experiment has not finished. So what use is the function $X(t, \omega)$ before the experiment has finished? This is where the functions partner in crime makes a reappearance. Let use look into the future and consider the current options for the final $\omega$? Obviously there are only two namely $(H, H, H, T, H)$ and $(H, H, H, T, T)$. Given we don't know which of the two will occur we have to somehow represent the current uncertainty about these two possibilities? Remember, a map stops being a common function and levels-up to being a random variable when it's paired with a probability distribution. It is this distribution that models our uncertainty. In this case the two final paths are equally likely so we provide the *additional information* $P(X(4, (H, H, H, T, T))) = 1/2$ and $P(X(4, (H, H, H, T, H))) = 1/2$.
+
+Notice, there is no uncertainty associated with the current step. So $P(X(3, (H, H, H, T, T))) = 1$ and $P(X(3, (H, H, H, T, H))) = 1$. Uncertainty has has given way to certainty.
+
+
+## Central Limit Theorem
+What does this theorem actually say. 
