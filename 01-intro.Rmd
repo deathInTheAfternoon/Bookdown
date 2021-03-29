@@ -76,35 +76,59 @@ However, we also want to ask about the probability of events such as 'all result
 
 Emphasize 'possible values' and \omega. i.e. the point is the experiment has not been performed. So we cannot know the value of \omega. Before the experiment all we can know are the all the possible values that might occur in the future. 
 
+Things to notice. We no longer talk about 'outcomes' but talk about events. Each atomic event is an outcome wrapped in a set. 
+
+Motivate sigma-algebra. We want to talk about complex events. Consider the event of rolling a dice. Here are some descriptions of events. A number. An even number. An odd number. A multiple of 2. Divisible by 2. A prime number. Any number less than 3. Any number greater than 3. A number divisible by 6. 
+
+We also have complex events such as: not the numer 6. The number 1 and the number 3. The number 1 or the number 3. 
+
 ## Filtration
-Imagine the roll of a dice. However, when the experiment is completed, information will only be revealed a step at a time. We're going to consider the possible questions that can be asked/answered over time.
+Imagine the roll of a dice. However, after the experiment the result will not be given but revealed in response to three consecutive questions. For example, we might ask:
 
-When step = 0, we can only ask 'was there an outcome?'. This is the coarsest level of information we can ascertain. The step allows the question 'Was the number even or odd' to be answered. The last step allows the question 'was the number 4 or not' to be answered. It can be seen that each question reveals a little more information than the previous step. How is this modeled using events?
+- Was the dice rolled?
+- Having been told the dice was rolled, is the result odd or even?
+- After being told the dice was rolled and the number was even, is it number 2?
 
-We use each set of outcomes to represent what could happen in the end, given what we know to date. Consider the following sets of subsets of $\Omega$:
+The key property is that each question requires an answer that reveals more information than the question before. In other words, the responses become more 'granular' in some way. Let us use sets of events (sets of subsets of $\Omega$) to model all possible answers at each step:
 
 $$\{\{1,2,3,4,5,6\}, \emptyset\}$$
 $$\{\{1,3,5\}, \{2, 4, 6\}\}$$
 $$\{\{1\},\{2\},\{3\},\{4\},\{5\},\{6\}\} $$
-If I tell you which of the events in the last set occurred then you would have more granular information than if I told you which of the events in the second set occurred. Likewise, telling you which of the events in the second set occurred gives more granular information than being told which of the events in the first set occurred.
+Notice, knowing which of the events in the last set occurred gives more granular information that knowing which of the events in the second set occurred. Likewise, knowing which of the events in the second set occurred gives more granular information than being told which of the events in the first set occurred. The above three sets are therefore modeling information flow over time - in some sense, information is increasing.
 
-Think of me revealing the following information in sequence: 
+Of course our sequence of sets of events models all the possible ways information could be revealed given the above questions. An actual realization might be the following: 
 
 * $\{1,2,3,4,5,6\}$ occurred (tells you a result has been discovered but not which one)
 * $\{2, 4, 6\}$ occurred (tells you the final result is an even number)
 * $\{4\}$ occurred (as much information as you could be given).
 
-Notice, there are many possible 'revelation paths', for example being told: $$\{1,2,3,4,5,6\} \rightarrow \{4,5,6\} \rightarrow \{5\}$$
-In this above case, each step answers the sequence of questions: 'was the dice rolled?', 'Was it 4 and above or not?', 'What number was it?'.
+Another realization might have been $$\{1,2,3,4,5,6\} \rightarrow \{4,5,6\} \rightarrow \{5\}$$
+
+However, we only look at realization paths as examples - our interest is modeling the sets of all possible answers at each step. This is probability after all and not statistics.
+
+So let's return to modeling 'all possible answers'. Up until this point one of our questions is rather limiting, namely 'is the number odd or even'. Surely, we should be able to ask 'is the number divisible by 3?', 'is the number prime?' depending upon our experiment. 
+
+So to take the next step, we're going to generalize and declare that at step 2 any question is allowed whose affirmative answer involves a set of two or more outcomes. This ensures we are still uncertain as to what could happen in step 3. In contrast, any question at step 3 requires an affirmative answer returning a single outcome e.g. 'is the number divisible by 6?'. This ensures there is no more uncertainty and the experiment has ended.
+
+So how can we model the set of all possible events at a given level of granularity. Well the mathematical foundation of probability theory is measure theory which in turn rests on set theory. One of the wonderful bridges between the later two worlds is the a structural wonder known as a $\sigma$-algebra. This gets us into technical mathematics so we will only intuit its structure.
+
+Simply put, if you have, say, two sets and list every union, intersection and complement between them, then you can collect each of those results into a super-set called the $\sigma$-algebra generated by those two sets. Let's form the required super-set at each stage of the revelation: 
+$$S_1 = \{\{1, 2, 3, 4, 5, 6\}, \emptyset\}$$
+That's all we can write for this first $\sigma$-algebra. Let's look at the $\sigma$-algebra generated by events of two or more outcomes:
+$$S_2=\{\{1,2\}, \{1,3\}, \{1,2,3\}, \{2, 4, 6\},\dots, \{1,2,3,4,5,6\},\emptyset\}$$
+Note: this includes atomic outcomes (e.g. $\{1,2\}\cap\{1,3\}=\{1\}$). But that doesn't matter as long as $S_2$ includes all possible events with two or more outcomes as required. Next, we model all possible ways of obtaining a single outcome using a $\sigma$-algebra:
+$$S_3=\{\{1\},\{2\},\{3\},\dots, \{1,2\}, \{1,3\},\dots,\{1,2,3\},\{2,4,6\},\dots,\{1, 2, 3, 4, 5, 6\}, \emptyset \}$$
+Note: again, we may have more events than required such as $\{1,2,3\}$ but there is a deeper reason for why that must be the case (modelling contains).
+
+THIS EXAMPLE HAS FAILED BECAUSE $S_2=S_3$. The sigma algebra generated by both $\{a,b\}$ and $\{a\}$ are equal. Can I continue? Does filtration still have meaning if both sets are equal? No, I cannot continue. If the the two sigmas are the same, then each step contains the same information - nothing extra is revealed. So we must use the roll of two dice instead.
+TODO: start with s1 and s2 for single dice. Then expand to S3 for two dice.
+I think this is because after the single roll, there is no more uncertainty...how the hell did the sigma know that? Whereas with two dice, there is still uncertainty over the second roll. So my approach (revealing information) is not equivalent.
+
+It is the relationship between $\sigma$-algebras that will be used to capture 'contains'. 
 
 But, importantly, since the experiment has ended and I am revealing the result a step at a time, then each step must contain the final result $\{4\}$ (or $\{5\}$ in second case). In fact, each revelation must contain the next revelation in some way. This means the following can never occur as a revelation path: $$\{1,2,3,4,5,6\} \rightarrow \{1,3,5\} \rightarrow \{6\}$$ In words, I can't reveal 'the final number is odd' and in the next step reveal it was $6$.
 
-How do we capture the 'contains' which is the key point? This requires a mathematical construct known as a $\sigma$-algebra. Simply put, if you have, say, two sets and list every union, intersection and complement possible, you end up with super-set called the $\sigma$-algebra generate by those sets. It is the relationship between $\sigma$-algebras that will be used to capture 'contains'. Let's form the required super-set at each stage of the revelation: 
-$$S_0 = \{\{1, 2, 3, 4, 5, 6\}, \emptyset\}$$
-That's all we can write for this first $\sigma$-algebra.
-$$S_1=\{\{1,3,5\}, \{2, 4, 6\}, \{1,2,3\}, \{4,5,6\},\dots, \{1,2,3,4,5,6\},\emptyset\}$$
-This models a set of any three final outcomes being revealed (e.g. odd/even, 4 and above, etc) at step 2. Notice, we've expanded possibilities beyond just 'even/odd' to 'any possible'.
-$$S_2=\{\{1\},\{2\},\{3\},\{4\},\{5\},\{6\}, \{1,2\}, \{2,3\},\dots,\{1,3,5\},\{2,4,6\},\dots,\{1, 2, 3, 4, 5, 6\}, \emptyset \}$$
+  
 As 'atomic events' are contained within the original set, every possible other subset that can be generated using union, intersection and complement is also a member of this $\sigma$-algebra, that's the whole shebang. Now notice we can write 'contains' using the subset relation: $$S_0 \subseteq S_1 \subseteq S_2$$
 
 This is the way in which 'information revealing' is modeled using sets. As we arrange a sequence of $\sigma$-algebras using containment $S_0 \subseteq S_1 \subseteq S_2 \subseteq \dots \subseteq S_n$ each step allows us to model a narrowing down to the final result i.e. each step across time  models the arrival of information which leads to a reduction in uncertainty.
