@@ -92,17 +92,39 @@ Of course, the apparatus is also limited in a more fundamental way. It cannot se
 This is useful in modeling infinite events - those that reveal information over time. You never know the final outcome, only as much as the apparatus (in this case restricted by time) allows you to see. Think of a stock price. You can say something about what it wont do because those outcomes could not occur because they don't match the past information.
 
 ## Events
+Let us introduce a simple example. 
+
+Let's say we plan to run an experiment which will finish after a coin will have been tossed three times and the result will have been recorded as a string e.g. 'HTH'. What does the sample space look like? We know it's a set that contains all possible outcomes:
+$$\Omega=\{HHH, HHT, HTH, HTT, TTT, TTH, THT, THH\}$$
+Before we go any further, let's remember some interesting things about sets. You can form subsets, unions, complements and intersections between sets. Since $\Omega$ is a set how might these operations help? Here are some examples including possible prose describing those sets:
+
+* $\{HHH\} \subseteq \Omega$
+    * 'three heads', 'no tails'
+* $\{HTT\} \subseteq \Omega$
+    * 'only first toss will be heads', 'only last two tosses will be tails'
+* $\{HHH\} \cup \{TTT\} = \{HHH, TTT\} \subseteq \Omega$
+    * 'we'll find either all heads or all tails', 'all the tosses will be the same'
+* $\{HHH\}^\complement \subseteq \Omega$
+    * 'they won't all be heads'
+* $\{HTT, THT, TTH\} \subseteq \Omega$
+    * 'the result will have only one head', 'we will find exactly two tails'
+
+Why is this useful? In advanced probability you will mostly make statements about collections, intervals or regions of the outcome space rather than any single outcome point itself. In fact, there are deep technical reasons why this becomes unavoidable if the outcome space is continuous in which case you cannot make sensible probability statements about a single sample point. But armed with the above set operations you can construct subsets of $\Omega$ about which you can make precise statements. These subsets are at the heart of formal probability theory and are so important that they are given a specific name - 'event'.
+
+Warning! You will notice I have used the terms experiment, game, prediction etc to denote that which produces a random outcome. I have not used the term 'event' which in common parlance could be used to denote any of these moments in time. We shall reserve the term event to exclusively denote a subset of the outcome space. We will not say things such as 'what is the probability of a win after the (sports) event'.
+
+And now we get to the crux of the matter. An outcome point is written 'HHT' or '1 second' or '6' etc, etc. But it's a very domain specific quantity. The problem is that very soon we're going to need some way to measure the 'probabilistic weight' of an outcome - the heavier it is the more probable it is - without caring about the outcomes definition. We therefore wish to disencumber ourselves of real world concerns such as units etc. Enter the event. By collecting outcomes into sets we trigger a whole ready and waiting branch of mathematics called measure theory. This branch of mathematics allows us to develop an abstract machine that weighs sets without ever knowing anything about the nature of the contents! It does this by assigning a size to a set that is related to the 'volume' of its contents. This is an incredibly powerful branch of mathematics that deals with continuous outcome spaces, their tremendous anomalies and the mathematical monsters hidden within the continuum. We won't pursue this topic in depth but much of the structure you see (sets, set operations, events) are the surface structures of some very deep intellectual icebergs.
+
+
 THIS IS CORRECT MOTIVATION
-Need to explain sample space and subsets (events).
-Let's say we run an experiment which involves tossing a coin three times. But before we begin, can you write out the set of all possible outcomes?
-$$\{HHH, HHT, HTH, HTT, TTT, TTH, THT, THH\}$$
+Need to explain sample space and subsets (events) and atomic events.
+
 Now what is the outcome after the experiment? Of course you don't yet know because 'chance' stands between you and the final result. But let's wind forward in time where we will find the result has been the subset $\{HTT\}$. Is there any uncertainty about the outcome anymore? Of course not - this is the land of statistics! 
 
 Now, returning back to before the experiment has begun, we can assign a number to each possible outcome to indicate its probability of occurring. We can then write a set function $P(\{HHT\})=1/8$ to give an indication of how likely to be observed after our experiment is this possible result.
 
 However, we also want to ask about the probability of events such as 'all results starting with H' or 'all results ending with two T'. So our set function must handle subsets such as $\{HHH, HHT, HTH, HTT\}$. In fact, we shall call all valid sets 'events'. So pretty much all subsets of the set of all possible outcomes, are events that can be used as an input variable to $P()$.
 
-Emphasize 'possible values' and \omega. i.e. the point is the experiment has not been performed. So we cannot know the value of \omega. Before the experiment all we can know are the all the possible values that might occur in the future. 
 
 Things to notice. We no longer talk about 'outcomes' but talk about events. Each atomic event is one or more outcomes wrapped in a set. 
 
