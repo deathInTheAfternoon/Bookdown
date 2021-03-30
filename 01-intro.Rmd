@@ -29,19 +29,47 @@ Selecting a person at random and measuring their weight gives a random number. Y
 
 However, nuclear decay is inherently random as are many other processes in the Universe. This is not subjective.
 
-You can introduce uncertainty by not bothering to find out the exact answer. How many hairs on a cats tail? I wont count but will estimate based upon information, perhaps. Is this the same as randomness? It seems different yet I could define a range of outcomes and assign each a probability?
+You can introduce uncertainty by not bothering to find out the exact answer. How many hairs on a cats tail? I wont count but will estimate based upon information, perhaps. Is this the same as randomness? It seems different (errors) yet I could define a range of outcomes and assign each a probability?
 
 Any situation where you could place a bet...'I bet there 100K hairs on a cats tail', 'I bet the coin will come  up tails', 'I bet the next car passing my window will be silver'.
 
-The point is, you cannot be certain before (physical limits or can't be bothered) but will be certain at the end.
+The point is, you cannot be certain before (physical limits or can't be bothered) but will be certain in the end.
+
+I add that we could replace 'in the end' with 'after the next step'. Life 'repeats' infinitely often, we wake up and start each day uncertain about the next 24 hours, are certain of what happened at the end and so the whole process repeats. By repeating an experiment over and over you get what's called a 'stochastic process'.
+
+The key points are that the experiment or game hasn't finished and we have some reason to be uncertain about the possible result. In fact, in the world of probability theory the experiment can never end because once it does there is no more uncertainty about the outcome and we can swtich to statistics. So we must adopt a position of perpetual waiting and excitement for the coin to land heads or tails.
+
+So let us repeat:
+
+* the end of the game is in the future
+* there is more than one possible result
+* we are uncertain which of those results will occur
 
 ## Sample point
-Could be an interval (cats hairs betting ranges: 100K-110K, 120K-130K...), or an area (will score 1, 2,...50 on a dartboard), or simple labels (H/T, 1...6 dice).
+A sample point is a single *possible* result of a prediction, estimation, measurement, experiment, game or guess. Sample points come from varying fields of study and have different dimensions (seconds, hours, kg, ly,...). Of course, the sample points are of indisputable interest and the raison d'etre for the experiment or game itself. Our personal and professional conversations are full of possible prognostications, forecasts and predictions about future sample points:
 
-But we will rapidly lift away (abstract) from physical sample points. Sample points are not important in the abstract theory. They are only useful for explanation and during applications.
+* Interest rates will probably increase by 0.25% (possible result)
+* The horse "d'Alembert's confusion" will probably win (possible result)
+* The next F1 pit stop will probably be less than 2.5 seconds (possible result)
+* The shopping website will probably not crash (possible result) on Black Friday.
+
+[Consultants, 'talking-heads', executives and politicians are paid large sums of money to remove the word 'probably' from such statements. But uncertainty is part of the fabric so that's 'probably' not a good thing.] 
+
+Yet perversely, probability theory has no interest whatsoever in the possible raw outcome itself. This is its power. It (as an axiomatic theory we shall ignore the fact many flavours exist) reveals hidden laws behind uncertainty in ANY experiment or game we can imagine and design - no matter what the sample points shape or size. Hence the first thing we will do is abstract away from any particular dimension or measure and introduce the mathematical variable $\omega$.
+
+Symbolically, the label $\omega$ is used to represent ONE of the range of possible results that could have occurred - without specifying which one. So in mathematics, any statement using the symbol $\omega$ that is considered true automatically applies to any single value $\omega$ can take. This is not the same as saying $\omega$ represents a range of values - it doesn't, only one value in that range. But there is a subtle point here. Let's say your predicting the final score of your favourite soccer team. Writing $\omega=2$ could mean the game finished and now you know the actual value of $\omega$ for your next calculations. But in probability the experiment is not finished so how can we know $\omega=2$? Instead $\omega=2$ represents one of many possible futures as in 'what if the final score were 2'. Now we can sensibly write 'the probability $\omega=2$ is 1/3' to mean 'the probability of the future in which my favourite team scores 2 goals is 1/3'.
+
+Having said all that there is another perversity that subtly creeps into probability theory. The sample point itself carries no information of any real interest. It will be the probability of it taking some value in some future world that is of real interest. In fact advanced texts in, for example, stochastic processes often spend little to no time worrying about what it represents. Again, it will be the probability models we are most interested in.
+
+We now look at the phrase 'all possible values'. It is here that we find a key differentiator for advanced mathematical treatments of probability.
+
 
 ## Sample Space
-Note: sample space is a set, sample points are atomic elements of the sample space, events are also sets.
+Before we talk about a single outcome from a future experiment we must define the range of possible values $\omega$ can take. This forces us to be precise and opens our thinking up to mathematical treatment. Mathematics has a natural home for collections of things - the set. Just as we used the label $\omega$ to specify some single possible outcome, we use the label capital $\Omega$ to indicate the mathematical set of all possible outcomes. Using basic set notation, $\omega$ takes a value from within the set $\Omega$ is denoted $\omega \in \Omega$.
+
+If you remember, $\omega$ should be thought of as representing a single outcome - without saying which outcome it represents. Likewise, $\Omega$ represents all possible outcomes from a single experiment - without saying which experiment it represents. $\Omega$ ranges across different experiments while $\omega$ ranges within a single experiment.
+
+## Stuff TODO
 
 Any experiment whose outcome is unknown given everything we know at the moment is called a random experiment. But we can describe all *possible observations* that can be made once the experiment is over. We cannot predict the outcome of tossing a coin but we know all the possible outcomes. Describe outcomes as relative to the experimental point of view and question being asked - an experiment does not  have a unique set of outcomes but there are many. So you might ask for the symbol on the coin after a toss, or whether it was the same as the toss before, or stock price vs delta, or pass/fail vs exact measurement of something, or intervals $\Delta t_i$ during which a component might fail (each interval is a sample point).
 
@@ -76,11 +104,13 @@ However, we also want to ask about the probability of events such as 'all result
 
 Emphasize 'possible values' and \omega. i.e. the point is the experiment has not been performed. So we cannot know the value of \omega. Before the experiment all we can know are the all the possible values that might occur in the future. 
 
-Things to notice. We no longer talk about 'outcomes' but talk about events. Each atomic event is an outcome wrapped in a set. 
+Things to notice. We no longer talk about 'outcomes' but talk about events. Each atomic event is one or more outcomes wrapped in a set. 
 
 Motivate sigma-algebra. We want to talk about complex events. Consider the event of rolling a dice. Here are some descriptions of events. A number. An even number. An odd number. A multiple of 2. Divisible by 2. A prime number. Any number less than 3. Any number greater than 3. A number divisible by 6. 
 
 We also have complex events such as: not the numer 6. The number 1 and the number 3. The number 1 or the number 3. 
+
+Any combination of events through 'and', 'or', 'not' produces equivalent classes of events. 
 
 ## Filtration
 Imagine the roll of a dice. However, after the experiment the result will not be given but revealed in response to three consecutive questions. For example, we might ask:
