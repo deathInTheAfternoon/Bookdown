@@ -272,3 +272,6 @@ Notice, there is no uncertainty associated with the current step. So $P(X(3, (H,
 
 ## Central Limit Theorem
 What does this theorem actually say. 
+
+## Expected Value
+Calculation is same as statistical mean or statistical average. But it is performed pre-experiment. It shows the future average and indicates centre of gravity for distribution of masses, drift, bias that will be found in the results. It indicates the tendency of results to centralise around some value if repeated trials.
