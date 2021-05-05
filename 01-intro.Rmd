@@ -71,6 +71,33 @@ If you remember, $\omega$ should be thought of as representing a single outcome 
 
 ## Stuff TODO
 
+Perhaps we should talk about 'not knowing' first. This is different from 'rational subjectivity' i.e. given all the information available (as per economics). Humans are not rational in many ways. So we must remove the natural mind from proceedings. 
+
+Perhaps we can talk about equations as counterfactuals. Maybe even worldbuilding in the Pa, Pr, F? Perhaps we can present equations as timeless - they applied to games of dice played by ancient Greek philosophers, Roman centurions or distant alien cultures. But there has to be something common to all of these situations that demand we think differently?
+
+Everything we talk about is in the future...about to happen. We're going to take this position but it can lead to some confusion given the nature of verb tenses.
+
+Let's start with the present - where you are right now.
+
+Consider the present. 'What is the capital of Zululand?'. 'I don't know but I wager it starts with a 'zeh''. We know an answer exists and has existed, so the uncertainty is about out ignorance of the future answer that is, no doubt, about to be revealed.
+
+A coin is being tossed, a coin has been tossed, a coin was tossed, a coin will be tossed.
+Pa->Pa, Pa->Pr, Pa->F. Pr -> Pa, Pr -> F. F ->Pa, F->Pr, F->F.
+
+How heavy is the moon, who is the prime-minister of Nepal (choose from a list of 8 billion names), how many sweets in the jar, which door hides a car. The world and many people will know certain answers to these questions. But our protagonist doesn't. He can still wager given a set of possible answers.
+
+Not knowing the answer when the answer exists, and not knowing an outcome when an experiment has not yet been conducted are treated as the same thing. It's the 'not knowing' that creates uncertainty.
+
+This 'not knowing' can include the past 'I wager Caesar crossed the Rubicon on 4th March'. (Note: 'not knowing' what Caesar was thinking when he crossed the Rubicon and 'not knowing' what day Caesar crossed the Rubicon are fundamentally different in a way described below)
+
+This includes the past. An elephant parachutes into our back garden...'what are the chances?' we muse. This actually means, going back in time five minutes before the outcome, pretending we're none the wiser, someone wagers $1M on an elephant parachuting into our back garden. We are imagining a counterfactual in the past but we're focused on the past-future.
+
+But, we need to know our possible outcomes. But this might include 'a dog parachuting', 'a cat parachuting', 'a piece of airplane cowling falling down', 'a piece of meteorite', 'an alien spacecraft'. As you can see, we are only limited by our imagination. And that's the problem - asking about how many possibilities you could imagine just leads to a very long list - limited by our imagination. 
+
+This is why we must use rather dull, so-called games: rolling a dice, rolling two die, spinning a coin. Now we can create well defined possible outcomes (though sooner or later, through boredom, imagination kicks back in and asks 'what if the coin landed on its edge, what if the dice rolled into a drain.).
+
+So we must agree that everything is in the future from the point of view of the character involved and we ignore imagination and stick to well defined sets of possible outcomes.
+
 Any experiment whose outcome is unknown given everything we know at the moment is called a random experiment. But we can describe all *possible observations* that can be made once the experiment is over. We cannot predict the outcome of tossing a coin but we know all the possible outcomes. Describe outcomes as relative to the experimental point of view and question being asked - an experiment does not  have a unique set of outcomes but there are many. So you might ask for the symbol on the coin after a toss, or whether it was the same as the toss before, or stock price vs delta, or pass/fail vs exact measurement of something, or intervals $\Delta t_i$ during which a component might fail (each interval is a sample point).
 
 Also, randomness is relative to your state of knowledge - ask the next person you see their height and the answer is random from your perspective, even though that person was certain about their height before hand. However, the process by which the person was selected must be random (you cannot predict who will be chosen) otherwise there is no uncertainty.
